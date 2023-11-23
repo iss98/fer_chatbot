@@ -2,4 +2,4 @@ streamlit
 pytorch
 torchvision
 Pillow
-openai  == 0.27.8
+openai==0.27.8
