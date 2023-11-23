@@ -1,0 +1,5 @@
+streamlit
+pytorch
+torchvision
+Pillow
+openai  == 0.27.8
