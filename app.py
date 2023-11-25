@@ -13,6 +13,9 @@ st.write("""1. 당신의 표정을 담은 사진(얼굴이 화면에 최대한 �
 4. ‘상담 시작!’ 버튼을 누르고 결과를 기다려주세요.
 5. 설문지를 꼭 남겨주세요!""")
 
+if 'emotion' not in st.session_state:
+    st.session_state['emotion'] = 9
+
 #dl
 target_size = (48, 48)
 emotion_dict = {0 : "화남", 1 : "역겨움", 2 : "두려움", 3 : "행복함", 4 : "중립", 5 : "슬픔", 6 : "놀라움"}
@@ -27,18 +30,24 @@ if img_file_buffer is not None:
     
     st.image(img)
 
+
+
     #표정 확인
     feeling_clicked = st.button("감정 확인하기!")
     model = load_model()
     if feeling_clicked:
+    
         st.balloons()
         # resized img 1 48 48 --> 1 1 48 48
         resized_img = torch.unsqueeze(resized_img, 0) # 1 1  48 48  
         output = model(resized_img)
         output = output.detach().cpu().numpy()
         emotion = np.argmax(output)
+        st.session_state['emotion'] = emotion
+        print(st.session_state['emotion'])
         st.write("표정을 확인했습니다!")
         st.write(f"당신의 표정 : {emotion_dict[emotion]}") 
+    st.write(st.session_state['emotion'])
 
     user_input = st.text_input("쳇봇에게 상담받고싶은 내용을 작성해주세요(예:나 오늘 너무 슬픈일이 있었어):")
     # Handle user input and generate system responses
@@ -51,6 +60,8 @@ if img_file_buffer is not None:
     if text_clicked:
         st.balloons()
         if user_input : 
+            st.write(st.session_state['emotion'])
+            emotion = st.session_state['emotion']
             prompt = complet_prompt(emotion_dict[emotion], str(user_input))
             response = get_response(prompt)
 
