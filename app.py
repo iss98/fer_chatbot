@@ -48,7 +48,6 @@ if img_file_buffer is not None:
         print(st.session_state['emotion'])
         st.write("표정을 확인했습니다!")
         st.write(f"당신의 표정 : {emotion_dict[emotion]}") 
-    st.write(st.session_state['emotion'])
 
     user_input = st.text_input("쳇봇에게 상담받고싶은 내용을 작성해주세요(예:나 오늘 너무 슬픈일이 있었어):")
     # Handle user input and generate system responses
@@ -61,7 +60,6 @@ if img_file_buffer is not None:
     if text_clicked:
         st.balloons()
         if user_input : 
-            st.write(st.session_state['emotion'])
             emotion = st.session_state['emotion']
             prompt = complet_prompt(emotion_dict[emotion], str(user_input))
             response = get_response(prompt)
