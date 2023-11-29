@@ -11,8 +11,7 @@ st.write('서울대학교 과학영재교육원 정보과학 사사과정 박준
 st.write("""1. 당신의 표정을 담은 사진(얼굴이 화면에 최대한 꽉 차게)을 찍고 먼저 ‘감정 확인하기!’ 버튼을 눌러주세요. 
 2. 당신의 표정을 인식한 결과가 출력되면, 자신의 표정과 일치하지 않는다면 ‘Clear Photo’ 버튼을 이용하여 다시 찍어주세요. 
 3. 원하는 인식 결과가 나왔다면, 이제 당신의 상황에 대한 간단한 문장(2~3문장)을 입력해주세요. 
-4. ‘상담 시작!’ 버튼을 누르고 결과를 기다려주세요.
-5. 설문지를 꼭 남겨주세요!""")
+4. ‘상담 시작!’ 버튼을 누르고 결과를 기다려주세요.""")
 
 if 'emotion' not in st.session_state:
     st.session_state['emotion'] = 9
@@ -70,6 +69,6 @@ if img_file_buffer is not None:
         if not user_input:
             st.write("대화를 시작해 주세요!")
 
-url = "https://forms.gle/gLP1Qm9gNkQLZ9B66"
-st.subheader("[후기를 남겨주세요](%s)" % url)
+# url = "https://forms.gle/gLP1Qm9gNkQLZ9B66"
+# st.subheader("[후기를 남겨주세요](%s)" % url)
         
